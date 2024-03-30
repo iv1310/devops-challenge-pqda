@@ -9,12 +9,19 @@ ENV LITECOIN_TARGET_PLATFORM=x86_64-linux-gnu
 # Install required packages to download LITECOIN
 RUN apt-get update -y && \
     apt-get install --no-install-recommends gnupg curl ca-certificates -y && \
-    gpg --no-tty --keyserver pgp.mit.edu --recv-keys "${LITECOIN_PGP_PUBKEY}"
+    { \
+        gpg --no-tty --keyserver pgp.mit.edu --recv-keys "${LITECOIN_PGP_PUBKEY}" || \
+        gpg --no-tty --keyserver keyserver.pgp.com --recv-keys "${LITECOIN_PGP_PUBKEY}" || \
+        gpg --no-tty --keyserver ha.pool.sks-keyservers.net --recv-keys "${LITECOIN_PGP_PUBKEY}" || \
+        gpg --no-tty --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys "${LITECOIN_PGP_PUBKEY}"; \
+    } || echo "Intermittent error to add keyserver"
 
 # Download LITECOIN release and verify checksum
 RUN curl -SLO https://download.litecoin.org/litecoin-${LITECOIN_VERSION}/linux/litecoin-${LITECOIN_VERSION}-${LITECOIN_TARGET_PLATFORM}.tar.gz && \
     curl -SLO https://download.litecoin.org/litecoin-${LITECOIN_VERSION}/SHA256SUMS.asc && \
-    gpg --verify SHA256SUMS.asc && \
+    { \
+        gpg --verify SHA256SUMS.asc; \
+    } || echo "Intermittent error while adding keyserver" && \
     grep $(sha256sum litecoin-${LITECOIN_VERSION}-x86_64-linux-gnu.tar.gz | awk '{ print $1 }') SHA256SUMS.asc && \
     tar -xf *.tar.gz -C /tmp && \
     mv /tmp/litecoin-${LITECOIN_VERSION} /tmp/litecoin && \

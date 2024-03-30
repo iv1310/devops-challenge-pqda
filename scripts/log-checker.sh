@@ -25,7 +25,7 @@ while getopts ":f:h" opt; do
             usage
             ;;
         \?)
-            echo "${RED}[!] Invalid option: $OPTARG.........${NC}" >&2
+            echo -e "${RED}[!] Invalid option: $OPTARG.........${NC}" >&2
             usage
             ;;
     esac

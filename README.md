@@ -278,3 +278,6 @@ module "s3_buckets" {
   }
 }
 ```
+
+#### References:
+1. [Log Example](https://github.com/elastic/examples/tree/master/Common%20Data%20Formats)

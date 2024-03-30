@@ -25,12 +25,22 @@ metadata:
     type: local
 spec:
   storageClassName: local-sc
+  persistentVolumeReclaimPolicy: Retain
   capacity:
     storage: 2Gi
   accessModes:
     - ReadWriteMany
   hostPath:
     path: "/tmp/litecoinvol"
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - kube-pg-node01
+          - kube-pg-node02
 
 ---
 apiVersion: v1

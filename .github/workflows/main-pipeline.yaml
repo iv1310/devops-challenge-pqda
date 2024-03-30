@@ -1,0 +1,54 @@
+name: "Pipeline to deploy: main branch"
+on:
+  push:
+    branches:
+      - main
+
+env:
+  REGISTRY: ghcr.io/iv1310
+  IMAGE_LITECOIN_NAME: my-litecoin
+
+jobs:
+  go-main-pipeline:
+    name: Deploy litecoin app to Cluster
+    permissions:
+      contents: read
+      packages: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_LITECOIN_NAME }}
+          tags: |
+            type=ref,event=pr
+            type=sha
+      - name: Log in to Private Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+      - name: Set short git commit SHA
+        id: vars
+        run: |
+          calculatedSha=$(git rev-parse --short ${{ github.sha }})
+          echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
+      - name: deploy litecoin app to cluster
+        uses: wahyd4/kubectl-helm-action@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: |
+            sed -i "s|<IMAGE_TAG>|sha-${{ env.COMMIT_SHORT_SHA }}|g" manifest/deployments.yaml
+            kubectl apply -f manifest/all.yaml -n my-apps-uwu
+            kubectl apply -f manifest/deployments.yaml -n my-apps-uwu

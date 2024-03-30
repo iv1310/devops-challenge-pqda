@@ -53,5 +53,4 @@ jobs:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
           args: |
-            kubectl apply -f manifest/all.yaml -n my-apps-uwu
             kubectl apply -f manifest/deployments.yaml -n my-apps-uwu

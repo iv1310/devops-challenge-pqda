@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: litecoin-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: litecoin
+  template:
+    metadata:
+      labels:
+        app: litecoin
+    spec:
+      containers:
+      - name: litecoin
+        image: ghcr.io/iv1310/my-litecoin:<IMAGE_TAG>
+        ports:
+        - containerPort: 9332  # Litecoin RPC port
+          name: rpc
+        - containerPort: 9333  # Litecoin P2P port
+          name: p2p
+        volumeMounts:
+        - name: litecoin-data
+          mountPath: /opt/litecoin/
+        resources:
+          limits:
+            cpu: "1"
+            memory: "512Mi"
+          requests:
+            cpu: "0.5"
+            memory: "128Mi"
+        securityContext:
+          runAsUser: 1000  # Non-root user for security
+          readOnlyRootFilesystem: true  # Protects against container file system tampering
+      volumes:
+      - name: litecoin-data
+        persistentVolumeClaim:
+          claimName: litecoin-pvc

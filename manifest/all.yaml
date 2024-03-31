@@ -36,11 +36,10 @@ spec:
     required:
       nodeSelectorTerms:
       - matchExpressions:
-        - key: kubernetes.io/hostname
+        - key: kubernetes.io/type
           operator: In
           values:
-          - kube-pg-node01
-          - kube-pg-node02
+          - node-worker
 
 ---
 apiVersion: v1

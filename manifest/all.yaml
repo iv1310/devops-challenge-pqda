@@ -16,30 +16,6 @@ spec:
       port: 9333  # Litecoin P2P port
       targetPort: 9333
 
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: litecoin-pv-volume
-  labels:
-    type: local
-spec:
-  storageClassName: local-sc
-  persistentVolumeReclaimPolicy: Retain
-  capacity:
-    storage: 2Gi
-  accessModes:
-    - ReadWriteMany
-  hostPath:
-    path: "/tmp/litecoinvol"
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/type
-          operator: In
-          values:
-          - node-worker
 
 ---
 apiVersion: v1
@@ -49,7 +25,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: local-sc
+  storageClassName: local-path
   resources:
     requests:
       storage: 2Gi

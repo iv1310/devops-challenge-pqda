@@ -372,5 +372,11 @@ module "s3_buckets" {
 }
 ```
 
+### Future Improvement.
+1. Add rollback pipeline.
+2. Add separate pipeline to deploy to different environments.
+3. Add pipeline checker for terraform module, and scripts, and it will be triggered when there are ane changes related to them.
+4. Add caching feature on the github action pipeline to improve build process.
+
 #### References:
 1. [Log Example](https://github.com/elastic/examples/tree/master/Common%20Data%20Formats)

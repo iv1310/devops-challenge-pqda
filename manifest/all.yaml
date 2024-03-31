@@ -46,4 +46,4 @@ spec:
               service:
                 name: litecoin-service
                 port:
-                  number: 9332
+                  number: 9333

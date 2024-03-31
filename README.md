@@ -1,5 +1,98 @@
 # devops-challenge-pqda
 This repository contain a litecoin application.
+```bash
+$ klogs --tail=100 <PODS_LITECOIN>
+2024-03-31T06:30:58Z Litecoin Core version v0.21.2.2 (release build)
+2024-03-31T06:30:58Z Assuming ancestors of block 62e2e3d21343a00994d38a63524867507dbeee6850e8fbf02e9c47a3ccf82f24 have valid signatures.
+2024-03-31T06:30:58Z Setting nMinimumChainWork=000000000000000000000000000000000000000000000702edaa57d42a9fd9e2
+2024-03-31T06:30:58Z Using the 'shani(1way,2way)' SHA256 implementation
+2024-03-31T06:30:58Z Using RdSeed as additional entropy source
+2024-03-31T06:30:58Z Using RdRand as an additional entropy source
+2024-03-31T06:30:58Z Default data directory /.litecoin
+2024-03-31T06:30:58Z Using data directory /opt/litecoin
+2024-03-31T06:30:58Z Config file: /opt/litecoin/litecoin.conf (not found, skipping)
+2024-03-31T06:30:58Z Command-line arg: datadir="/opt/litecoin"
+2024-03-31T06:30:58Z Command-line arg: printtoconsole=""
+2024-03-31T06:30:58Z Using at most 125 automatic connections (65535 file descriptors available)
+2024-03-31T06:30:58Z Using 16 MiB out of 32/2 requested for signature cache, able to store 524288 elements
+2024-03-31T06:30:58Z Using 16 MiB out of 32/2 requested for script execution cache, able to store 524288 elements
+2024-03-31T06:30:58Z Script verification uses 0 additional threads
+2024-03-31T06:30:58Z HTTP: creating work queue of depth 16
+2024-03-31T06:30:58Z scheduler thread start
+2024-03-31T06:30:58Z Using random cookie authentication.
+2024-03-31T06:30:58Z Generated RPC authentication cookie /opt/litecoin/.cookie
+2024-03-31T06:30:58Z HTTP: starting 4 worker threads
+2024-03-31T06:30:58Z Using wallet directory /opt/litecoin
+2024-03-31T06:30:58Z init message: Verifying wallet(s)...
+2024-03-31T06:30:58Z init message: Loading banlist...
+2024-03-31T06:30:58Z SetNetworkActive: true
+2024-03-31T06:30:58Z Using /16 prefix for IP bucketing
+2024-03-31T06:30:58Z Cache configuration:
+2024-03-31T06:30:58Z * Using 2.0 MiB for block index database
+2024-03-31T06:30:58Z * Using 8.0 MiB for chain state database
+2024-03-31T06:30:58Z * Using 440.0 MiB for in-memory UTXO set (plus up to 286.1 MiB of unused mempool space)
+2024-03-31T06:30:58Z init message: Loading block index...
+2024-03-31T06:30:58Z Switching active chainstate to Chainstate [ibd] @ height -1 (null)
+2024-03-31T06:30:58Z Opening LevelDB in /opt/litecoin/blocks/index
+2024-03-31T06:30:58Z Opened LevelDB successfully
+2024-03-31T06:30:58Z Using obfuscation key for /opt/litecoin/blocks/index: 0000000000000000
+2024-03-31T06:30:58Z LoadBlockIndexDB: last block file = 0
+2024-03-31T06:30:58Z LoadBlockIndexDB: last block file info: CBlockFileInfo(blocks=1, size=288, heights=0...0, time=2011-10-07...2011-10-07)
+2024-03-31T06:30:58Z Checking all blk files are present...
+2024-03-31T06:30:58Z Opening LevelDB in /opt/litecoin/chainstate
+2024-03-31T06:30:59Z Opened LevelDB successfully
+2024-03-31T06:30:59Z Using obfuscation key for /opt/litecoin/chainstate: 74b11b408914bd5b
+2024-03-31T06:30:59Z Loaded best chain: hashBestChain=12a765e31ffd4059bada1e25190f6e98c99d9714d334efa41a195a7e7e04bfe2 height=0 date=2011-10-07T07:31:05Z progress=0.000000
+2024-03-31T06:30:59Z init message: Rewinding blocks...
+2024-03-31T06:30:59Z FlushStateToDisk: write coins cache to disk (0 coins, 0kB) started
+2024-03-31T06:30:59Z FlushStateToDisk: write coins cache to disk (0 coins, 0kB) completed (0.00s)
+2024-03-31T06:30:59Z init message: Verifying blocks...
+2024-03-31T06:30:59Z  block index             219ms
+2024-03-31T06:30:59Z block tree size = 1
+2024-03-31T06:30:59Z nBestHeight = 0
+2024-03-31T06:30:59Z Bound to [::]:9333
+2024-03-31T06:30:59Z Bound to 0.0.0.0:9333
+2024-03-31T06:30:59Z Unable to bind to 127.0.0.1:9333 on this computer. Litecoin Core is probably already running.
+2024-03-31T06:30:59Z init message: Loading P2P addresses...
+2024-03-31T06:30:59Z Loaded 0 addresses from peers.dat  0ms
+2024-03-31T06:30:59Z Loaded 0 addresses from "anchors.dat"
+2024-03-31T06:30:59Z 0 block-relay-only anchors will be tried for connections.
+2024-03-31T06:30:59Z init message: Starting network threads...
+2024-03-31T06:30:59Z init message: Done loading
+2024-03-31T06:30:59Z msghand thread start
+2024-03-31T06:30:59Z opencon thread start
+2024-03-31T06:30:59Z addcon thread start
+2024-03-31T06:30:59Z dnsseed thread start
+2024-03-31T06:30:59Z Loading addresses from DNS seed seed-a.litecoin.loshan.co.uk
+2024-03-31T06:30:59Z net thread start
+2024-03-31T06:30:59Z torcontrol thread start
+2024-03-31T06:30:59Z loadblk thread start
+2024-03-31T06:30:59Z Imported mempool transactions from disk: 0 succeeded, 0 failed, 0 expired, 0 already there, 0 waiting for initial broadcast
+2024-03-31T06:30:59Z loadblk thread exit
+2024-03-31T06:30:59Z Loading addresses from DNS seed dnsseed.litecointools.com
+2024-03-31T06:30:59Z Loading addresses from DNS seed dnsseed.koin-project.com
+2024-03-31T06:31:03Z Loading addresses from DNS seed dnsseed.thrasher.io
+2024-03-31T06:31:04Z Loading addresses from DNS seed dnsseed.litecoinpool.org
+2024-03-31T06:31:04Z 0 addresses found from DNS seeds
+2024-03-31T06:31:04Z dnsseed thread exit
+2024-03-31T06:31:06Z New outbound peer connected: version: 70016, blocks=2659587, peer=0 (full-relay)
+2024-03-31T06:31:07Z New outbound peer connected: version: 70016, blocks=2659587, peer=1 (full-relay)
+2024-03-31T06:31:13Z Synchronizing blockheaders, height: 2000 (~0.08%)
+2024-03-31T06:31:20Z Synchronizing blockheaders, height: 4000 (~0.15%)
+2024-03-31T06:31:27Z Synchronizing blockheaders, height: 6000 (~0.23%)
+2024-03-31T06:31:33Z Synchronizing blockheaders, height: 8000 (~0.30%)
+2024-03-31T06:31:40Z Synchronizing blockheaders, height: 10000 (~0.38%)
+2024-03-31T06:31:47Z Synchronizing blockheaders, height: 12000 (~0.46%)
+2024-03-31T06:31:53Z Synchronizing blockheaders, height: 14000 (~0.53%)
+2024-03-31T06:32:00Z Synchronizing blockheaders, height: 16000 (~0.61%)
+2024-03-31T06:32:06Z Synchronizing blockheaders, height: 18000 (~0.68%)
+2024-03-31T06:32:13Z Synchronizing blockheaders, height: 20000 (~0.76%)
+2024-03-31T06:32:19Z Synchronizing blockheaders, height: 22000 (~0.84%)
+2024-03-31T06:32:26Z Synchronizing blockheaders, height: 24000 (~0.91%)
+2024-03-31T06:32:32Z Synchronizing blockheaders, height: 26000 (~0.99%)
+2024-03-31T06:32:39Z Synchronizing blockheaders, height: 28000 (~1.06%)
+2024-03-31T06:35:51Z New outbound peer connected: version: 70016, blocks=2659591, peer=3 (full-relay)
+```
 
 ### Tools
 1. Kubernetes: 1.28

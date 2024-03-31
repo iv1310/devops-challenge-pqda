@@ -1,7 +1,7 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: litecoin-deployment
+  name: litecoin-ss
 spec:
   replicas: 1
   selector:
@@ -29,10 +29,10 @@ spec:
           mountPath: /opt/litecoin/
         resources:
           limits:
-            cpu: "1"
-            memory: "512Mi"
+            cpu: "0.2"
+            memory: "256Mi"
           requests:
-            cpu: "0.5"
+            cpu: "0.1"
             memory: "128Mi"
         securityContext:
           runAsUser: 1000  # Non-root user for security

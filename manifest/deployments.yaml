@@ -12,6 +12,8 @@ spec:
       labels:
         app: litecoin
     spec:
+      nodeSelector:
+        kubernetes.io/type: node-worker
       containers:
       - name: litecoin
         image: ghcr.io/iv1310/my-litecoin:<IMAGE_TAG>

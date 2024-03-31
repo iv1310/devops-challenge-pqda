@@ -14,6 +14,8 @@ spec:
     spec:
       nodeSelector:
         kubernetes.io/type: node-worker
+      imagePullSecrets:
+      - name: ghcr
       containers:
       - name: litecoin
         image: ghcr.io/iv1310/my-litecoin:<IMAGE_TAG>
